@@ -1,0 +1,29 @@
+h1{
+    text-align: center;
+    color: blueviolet
+}
+
+#board{
+    width: 600px;
+    height: 600px;
+    border: 5px solid black;
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.box {
+    width: 33%;
+    border: 1px solid blueviolet;
+    height: 200px;
+}
+.btn-position{
+    display: flex
+}
+
+.reset{
+    padding: 10px;
+    background-color: blueviolet;
+    color: #fff;
+    font-size: 15px;
+    margin: 20px auto;
+}
