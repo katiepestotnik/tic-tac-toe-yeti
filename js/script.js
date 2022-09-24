@@ -16,11 +16,13 @@ const winner = document.querySelector('.winner')
 const playerX = []
 const playerO = []
 let winnerEnd
-const isWinningMove = (playerX, playerO) => {
+let currentPlayer = "X"
+const turn = document.querySelector('#players-turn')
+turn.innerHTML = currentPlayer
+const boxes = document.querySelectorAll('.box')
 
-    //determine if one of these winning moves is present in playerboxes
-    // playerX.sort()
-    // playerO.sort()
+
+const isWinningMove = (playerX, playerO) => {
     let checker = (player, winning) => winning.every(ele => player.includes(ele));
     winningCombos.forEach((win) => {
         if (checker(playerX, win)) {
@@ -41,10 +43,6 @@ const isWinningMove = (playerX, playerO) => {
     })
 }
 
-let currentPlayer = "X"
-const turn = document.querySelector('#players-turn')
-turn.innerHTML = currentPlayer
-const boxes = document.querySelectorAll('.box')
 const handleClick = (e) => {
     e.preventDefault()
     let box = e.target
@@ -61,7 +59,7 @@ const handleClick = (e) => {
         alert('Box already player, try another.')
         return
     }
-//check winner
+    //check winner
     isWinningMove(playerX, playerO)
     //change box per turn
     if (currentPlayer === 'X') {
