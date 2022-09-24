@@ -1,4 +1,4 @@
-
+//variables
 const winningCombos = [
     //left to right
     ['box-1', 'box-2', 'box-3'],
@@ -20,8 +20,9 @@ let currentPlayer = "X"
 const turn = document.querySelector('#players-turn')
 turn.innerHTML = currentPlayer
 const boxes = document.querySelectorAll('.box')
+const reset = document.querySelector('.reset')
 
-
+//winner function
 const isWinningMove = (playerX, playerO) => {
     let checker = (player, winning) => winning.every(ele => player.includes(ele));
     winningCombos.forEach((win) => {
@@ -43,6 +44,7 @@ const isWinningMove = (playerX, playerO) => {
     })
 }
 
+//click function
 const handleClick = (e) => {
     e.preventDefault()
     let box = e.target
@@ -70,11 +72,12 @@ const handleClick = (e) => {
     //fix the h1 to display currentPlayer
     turn.innerHTML = currentPlayer
 }
+
+//event listeners
 boxes.forEach((box) => {
     box.addEventListener('click', handleClick)
 })
 
-const reset = document.querySelector('.reset')
 reset.addEventListener('click', () => {
     location.reload()
 })
