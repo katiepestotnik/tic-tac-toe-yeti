@@ -24,16 +24,16 @@ const reset = document.querySelector('.reset')
 
 //winner function
 const isWinningMove = (playerX, playerO) => {
-    let checker = (player, winning) => winning.every(ele => player.includes(ele));
+    let checkWinner = (player, winning) => winning.every(ele => player.includes(ele));
     winningCombos.forEach((win) => {
-        if (checker(playerX, win)) {
+        if (checkWinner(playerX, win)) {
             winner.innerHTML = 'Player X wins!'
             // setTimeout(() => {
             //     location.reload()
             // }, 2000)
         winnerEnd = true
         } 
-        if (checker(playerO, win)) {
+        if (checkWinner(playerO, win)) {
             winner.innerHTML = 'Player 0 wins!'
             // setTimeout(() => {
             //     location.reload()
