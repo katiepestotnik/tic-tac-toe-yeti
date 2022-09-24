@@ -37,3 +37,8 @@ h1{
     font-size: 15px;
     margin: 20px auto;
 }
+.winner{
+    text-align: center;
+    font-size: 30px;
+    color: olivedrab
+}

@@ -1,55 +1,70 @@
-// 1) Define required constants
-// 2) Define required variables used to track the state of the game
-// 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant.
-// 4) Upon loading the app should:
-//     4.1) Initialize the state variables
-//     4.2) Render those values to the page
-//     4.3) Wait for the user to click a square
-// 5) Handle a player clicking a square
-// 6) Handle a player clicking the replay button
 
-//get the element / add eventListener
-// const box_1 = document.querySelector('#box-1')
-// const box_2 = document.querySelector('#box-2')
-// const box_3 = document.querySelector('#box-3')
-// const box_4 = document.querySelector('#box-4')
-// const box_5 = document.querySelector('#box-5')
-// const box_6 = document.querySelector('#box-6')
-// const box_7 = document.querySelector('#box-7')
-// const box_8 = document.querySelector('#box-8')
-// const box_9 = document.querySelector('#box-9')
-// const board = [
-//     box_1,
-//     box_2,
-//     box_3,
-//     box_4,
-//     box_5,
-//     box_6,
-//     box_7,
-//     box_8,
-//     box_9
-// ]
+const winningCombos = [
+    //left to right
+    ['box-1', 'box-2', 'box-3'],
+    ['box-4', 'box-5', 'box-6'],
+    ['box-7', 'box-8', 'box-9'],
+    //top to bottom
+    ['box-1', 'box-4', 'box-7'],
+    ['box-2', 'box-5', 'box-8'],
+    ['box-3', 'box-6', 'box-9'],
+    //diagnol
+    ['box-1', 'box-5', 'box-9'],
+    ['box-3', 'box-5', 'box-7']
+]
+const winner = document.querySelector('.winner')
+const playerX = []
+const playerO = []
+const isWinningMove = (playerX, playerO) => {
+    //determine if one of these winning moves is present in playerboxes
+    playerX.sort()
+    playerO.sort()
+    let checker = (player, winning) => winning.every(v => player.includes(v));
+    winningCombos.forEach((win) => {
+        if (checker(playerX, win)) {
+            winner.innerHTML = 'Player X wins!'
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        } 
+        if (checker(playerO, win)) {
+            winner.innerHTML = 'Player 0 wins!'
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+
+        }
+    })
+}
 
 let currentPlayer = "X"
 const turn = document.querySelector('#players-turn')
 turn.innerHTML = currentPlayer
-const winningCombos = []
-let gamePlay
 const boxes = document.querySelectorAll('.box')
 const handleClick = (e) => {
     e.preventDefault()
     let box = e.target
     if (box.innerHTML === '') {
         box.innerHTML = currentPlayer
+        //update the state for players array
+        if (currentPlayer === 'X') {
+            playerX.push(box.id)
+        } else {
+            playerO.push(box.id)
+        }
     } else {
         alert('Box already player, try another.')
         return
     }
+//check winner
+isWinningMove(playerX, playerO)
+    //change box per turn
     if (currentPlayer === 'X') {
         currentPlayer = 'O'
     } else {
         currentPlayer = 'X'
     }
+    //fix the h1 to display currentPlayer
     turn.innerHTML = currentPlayer
 }
 boxes.forEach((box) => {
