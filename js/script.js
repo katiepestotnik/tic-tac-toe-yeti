@@ -31,7 +31,8 @@
 // ]
 
 let currentPlayer = "X"
-document.querySelector('#players-turn').innerHTML = currentPlayer
+const turn = document.querySelector('#players-turn')
+turn.innerHTML = currentPlayer
 const winningCombos = []
 let gamePlay
 const boxes = document.querySelectorAll('.box')
@@ -49,7 +50,7 @@ const handleClick = (e) => {
     } else {
         currentPlayer = 'X'
     }
-    document.querySelector('#players-turn').innerHTML = currentPlayer
+    turn.innerHTML = currentPlayer
 }
 boxes.forEach((box) => {
     box.addEventListener('click', handleClick)
