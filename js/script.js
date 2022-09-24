@@ -19,7 +19,7 @@ const isWinningMove = (playerX, playerO) => {
     //determine if one of these winning moves is present in playerboxes
     playerX.sort()
     playerO.sort()
-    let checker = (player, winning) => winning.every(v => player.includes(v));
+    let checker = (player, winning) => winning.every(ele => player.includes(ele));
     winningCombos.forEach((win) => {
         if (checker(playerX, win)) {
             winner.innerHTML = 'Player X wins!'
