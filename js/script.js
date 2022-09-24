@@ -25,16 +25,16 @@ const isWinningMove = (playerX, playerO) => {
     winningCombos.forEach((win) => {
         if (checker(playerX, win)) {
             winner.innerHTML = 'Player X wins!'
-            setTimeout(() => {
-                location.reload()
-            }, 2000)
+            // setTimeout(() => {
+            //     location.reload()
+            // }, 2000)
         winnerEnd = true
         } 
         if (checker(playerO, win)) {
             winner.innerHTML = 'Player 0 wins!'
-            setTimeout(() => {
-                location.reload()
-            }, 2000)
+            // setTimeout(() => {
+            //     location.reload()
+            // }, 2000)
         winnerEnd = true
 
         }
@@ -48,6 +48,7 @@ const boxes = document.querySelectorAll('.box')
 const handleClick = (e) => {
     e.preventDefault()
     let box = e.target
+    if(winnerEnd)return
     if (box.innerHTML === '') {
         box.innerHTML = currentPlayer
         //update the state for players array
@@ -62,7 +63,6 @@ const handleClick = (e) => {
     }
 //check winner
     isWinningMove(playerX, playerO)
-    if (winnerEnd)return
     //change box per turn
     if (currentPlayer === 'X') {
         currentPlayer = 'O'
