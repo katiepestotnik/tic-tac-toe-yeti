@@ -15,10 +15,12 @@ const winningCombos = [
 const winner = document.querySelector('.winner')
 const playerX = []
 const playerO = []
+let winnerEnd
 const isWinningMove = (playerX, playerO) => {
+
     //determine if one of these winning moves is present in playerboxes
-    playerX.sort()
-    playerO.sort()
+    // playerX.sort()
+    // playerO.sort()
     let checker = (player, winning) => winning.every(ele => player.includes(ele));
     winningCombos.forEach((win) => {
         if (checker(playerX, win)) {
@@ -26,12 +28,14 @@ const isWinningMove = (playerX, playerO) => {
             setTimeout(() => {
                 location.reload()
             }, 2000)
+        winnerEnd = true
         } 
         if (checker(playerO, win)) {
             winner.innerHTML = 'Player 0 wins!'
             setTimeout(() => {
                 location.reload()
             }, 2000)
+        winnerEnd = true
 
         }
     })
@@ -57,7 +61,8 @@ const handleClick = (e) => {
         return
     }
 //check winner
-isWinningMove(playerX, playerO)
+    isWinningMove(playerX, playerO)
+    if (winnerEnd)return
     //change box per turn
     if (currentPlayer === 'X') {
         currentPlayer = 'O'
